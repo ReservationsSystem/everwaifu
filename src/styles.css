@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+h1 {
+  @apply text-4xl lg:text-7xl font-extrabold;
+}
+
+h2 {
+  @apply text-2xl lg:text-5xl font-bold;
+}
+
+h3 {
+    @apply text-4xl font-bold;
+}
+
+p {
+  @apply text-xl;
+}
+
+section {
+  @apply flex px-5 md:px-24 overflow-hidden;
+}
+
+form {
+    @apply max-w-[400px] md:max-w-max md:w-fit flex flex-col md:flex-row rounded-lg text-lg lg:text-2xl;
+}
+
+input {
+    @apply placeholder-white md:placeholder-gray-500 p-4 rounded-t-lg md:rounded-t-none md:rounded-l-lg border-[3px] border-primary bg-[#FFF0] bg-opacity-0 backdrop-blur-lg;
+}
+
+button {
+    @apply p-4 rounded-b-lg md:rounded-b-none md:rounded-r-lg bg-primary text-white;
+}

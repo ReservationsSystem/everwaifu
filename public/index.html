@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="styles.css" />
+        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    </head>
+    <body class="bg-background">
+        <main class="relative">
+            <img src="img/logo.png" class="absolute top-5 left-4 w-[200px]" />
+
+            <!-- hero -->
+            <section class="h-screen relative">
+                <div
+                    class="relative w-full md:justify-start md:items-start md:w-[70%] md:gap-8"
+                >
+                    <div class="absolute top-[20vh]">
+                        <h1 class="text-secondary-100">
+                            Never Feel Alone Again
+                        </h1>
+                        <h2 class="text-primary mt-1">
+                            Create Your Personalized AI Friend
+                        </h2>
+                        <p class="hidden md:block w-full lg:w-3/4 mt-8 leading-8">
+                            Your journey to meaningful conversations starts here.
+                            Build your own AI companion, tailored to your needs, for
+                            support, friendship, and endless interaction.
+                        </p>
+                    </div>
+                    <div class="absolute bottom-[120px] w-full">
+                        <form>
+                            <input type="email" placeholder="Email" />
+                            <button>Get early access</button>
+                        </form>
+                    </div>
+                </div>
+                <div
+                    class="hidden md:block absolute top-0 right-0 w-1/2 z-[-1]"
+                >
+                    <img src="img/img-hero.png" class="w-fit h-fit" />
+                </div>
+                <div
+                    class="md:hidden absolute bottom-0 left-1/2 -translate-x-1/2 w-screen z-[-1]"
+                >
+                    <img src="img/img-hero-mobile.png" class="w-fit h-fit" />
+                </div>
+            </section>
+
+            <!-- features -->
+            <section
+                class="flex-col h-[1150px] md:flex-row md:h-screen relative mt-32 gap-8"
+            >
+                <div
+                    class="flex flex-1 flex-col w-full gap-8"
+                    data-aos="fade-down"
+                    data-aos-duration="1000"
+                >
+                    <div class="w-20 h-2 bg-primary"></div>
+                    <h3 class="text-primary">Header for product description</h3>
+                    <p class="leading-8">
+                        Your imagination is the limit when creating your waifu.
+                        Tailor her to your own taste. Give her the personality
+                        that compliment yours. With the looks of your dream
+                        girl.
+                    </p>
+                </div>
+                <div class="relative flex-grow h-full">
+                    <!-- desktop -->
+                    <div
+                        class="hidden md:block absolute top-8 left-0 w-[40%] h-[350px]"
+                        data-aos="fade-down"
+                        data-aos-duration="2000"
+                    >
+                        <img
+                            src="img/m1.png"
+                            class="w-full h-full object-cover rounded-[20px]"
+                        />
+                    </div>
+                    <div
+                        class="hidden md:block absolute top-1/4 left-1/4 w-[40%] h-[350px]"
+                        data-aos="fade-down"
+                        data-aos-duration="2500"
+                    >
+                        <img
+                            src="img/m2.png"
+                            class="w-full h-full object-cover rounded-[20px]"
+                        />
+                    </div>
+                    <div
+                        class="hidden md:block absolute top-0 right-0 w-[40%] h-[350px] z-[-1]"
+                        data-aos="fade-down"
+                        data-aos-duration="3000"
+                    >
+                        <img
+                            src="img/m3.png"
+                            class="w-full h-full object-cover rounded-[20px]"
+                        />
+                    </div>
+                    <!-- mobile -->
+                    <div
+                        class="md:hidden absolute top-0 left-0 w-[220px] h-[300px]"
+                    >
+                        <img
+                            src="img/m1.png"
+                            class="w-full h-full object-cover rounded-[20px]"
+                        />
+                    </div>
+                    <div
+                        class="md:hidden absolute bottom-0 left-0 w-[220px] h-[300px]"
+                    >
+                        <img
+                            src="img/m2.png"
+                            class="w-full h-full object-cover rounded-[20px]"
+                        />
+                    </div>
+                    <div
+                        class="md:hidden absolute top-1/2 -translate-y-1/2 right-0 w-[220px] h-[300px]"
+                    >
+                        <img
+                            src="img/m3.png"
+                            class="w-full h-full object-cover rounded-[20px]"
+                        />
+                    </div>
+                </div>
+            </section>
+
+            <!-- testimonials -->
+            <section class="h-fit relative mt-32">Words</section>
+
+            <!-- call to action -->
+            <section
+                class="flex-col h-screen justify-center items-center gap-20"
+            >
+                <h1 class="text-center text-gray-500">
+                    Give life to the girl of your dreams
+                </h1>
+                <form>
+                    <input type="email" placeholder="Email" />
+                    <button>Get early access</button>
+                </form>
+            </section>
+        </main>
+
+        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        <script>
+            AOS.init();
+        </script>
+    </body>
+</html>
