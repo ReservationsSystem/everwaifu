@@ -31,5 +31,5 @@ input {
 }
 
 button {
-    @apply p-4 rounded-b-lg md:rounded-b-none md:rounded-r-lg bg-primary text-white;
+    @apply p-4 rounded-b-lg md:rounded-b-none md:rounded-r-lg border-[3px] border-t-0 md:border-t-[3px] md:border-l-0 border-primary bg-primary text-white hover:text-primary hover:bg-white;
 }
