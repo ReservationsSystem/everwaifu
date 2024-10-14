@@ -30,8 +30,8 @@
                         </p>
                     </div>
                     <div class="absolute bottom-[120px] w-full">
-                        <form>
-                            <input type="email" placeholder="Email" />
+                        <form id="contactForm1" onsubmit="return postToGoogle('contactForm1', 'Email1');">
+                            <input name="entry.529113901" id="Email1" type="email1" placeholder="Email" />
                             <button>Get early access</button>
                         </form>
                     </div>
@@ -136,8 +136,8 @@
                 <h1 class="text-center text-gray-500">
                     Give life to the girl of your dreams
                 </h1>
-                <form>
-                    <input type="email" placeholder="Email" />
+                <form id="contactForm2" onsubmit="return postToGoogle('contactForm2', 'Email2');">
+                    <input name="entry.529113901" id="Email2" type="email2" placeholder="Email" />
                     <button>Get early access</button>
                 </form>
             </section>
@@ -147,5 +147,28 @@
         <script>
             AOS.init();
         </script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+           function postToGoogle(formId, emailFieldId) {
+                var emailValue = $("#" + emailFieldId).val(); 
+
+                var googleEntryId = "entry.529113901";
+
+                $.ajax({
+                url: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSeomdV6_OJxtIGlOTxua1wum--zMzuZLYfpzTx6QK19R4GOaA/formResponse", // Your form's URL
+                data: {
+                    [googleEntryId]: emailValue,
+                },
+                type: "POST",
+                dataType: "xml",
+                complete: function () {
+                    $('#' + formId).trigger('reset');
+                    alert("Form submitted!");
+                }
+                });
+
+                return false;
+            }
+          </script>
     </body>
 </html>
