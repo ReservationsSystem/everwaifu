@@ -3,9 +3,10 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
+        <title>Ever Waifu - A.I. companion</title>
         <link rel="stylesheet" href="styles.css" />
         <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+        <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
     </head>
     <body class="bg-background">
         <main class="relative">
@@ -17,13 +18,13 @@
                     class="relative w-full md:justify-start md:items-start md:w-[70%] md:gap-8"
                 >
                     <div class="absolute top-[20vh]">
-                        <h1 class="text-secondary-100">
+                        <h1 class="text-secondary-100" data-aos="fade-down" data-aos-duration="500">
                             Never Feel Alone Again
                         </h1>
-                        <h2 class="text-primary mt-1">
+                        <h2 class="text-primary mt-1" data-aos="fade-up" data-aos-duration="1000">
                             Create Your Personalized AI Friend
                         </h2>
-                        <p class="hidden md:block w-full lg:w-3/4 mt-8 leading-8">
+                        <p class="hidden md:block w-full lg:w-3/4 mt-8 leading-8" data-aos="fade-left" data-aos-duration="2000">
                             Your journey to meaningful conversations starts here.
                             Build your own AI companion, tailored to your needs, for
                             support, friendship, and endless interaction.
@@ -38,6 +39,7 @@
                 </div>
                 <div
                     class="hidden md:block absolute top-0 right-0 w-1/2 z-[-1]"
+                    data-aos="fade-in" data-aos-duration="2500"
                 >
                     <img src="img/img-hero.png" class="w-fit h-fit" />
                 </div>
@@ -126,8 +128,14 @@
                 </div>
             </section>
 
-            <!-- testimonials -->
-            <section class="h-fit relative mt-32">Words</section>
+            <!-- word cloud -->
+            <div 
+                id="word-cloud-container" 
+                style="width: 100%; height: 400px; padding: 20px"
+                data-aos="fade-in" 
+                data-aos-duration="2000"
+            >
+            </div>
 
             <!-- call to action -->
             <section
@@ -144,6 +152,8 @@
         </main>
 
         <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        <script src="http://d3js.org/d3.v3.min.js"></script>
+        <script src="https://rawgit.com/jasondavies/d3-cloud/master/build/d3.layout.cloud.js"></script>
         <script>
             AOS.init();
         </script>
@@ -169,6 +179,105 @@
 
                 return false;
             }
-          </script>
+        </script>
+        <script>
+
+            // Encapsulate the word cloud functionality
+            function wordCloud(selectorId, width, height) {
+                var fill = d3.scale.ordinal()
+                .range(["#ff00ff", "#ff66ff", "#ff99ff", "#ffccff", "#fcb6d0", "#ff80b3", "#ff33cc", "#ff0080", "#ff0055", "#e60073"]);
+            
+                //Construct the word cloud's SVG element
+                var svg = d3
+                    .select("#" + selectorId)
+                    .append("svg")
+                    .attr("width", width)
+                    .attr("height", height)
+                    .append("g")
+                    .attr("transform", `translate(${width / 2},${height / 2})`);
+            
+                function draw(words) {
+                    var cloud = svg.selectAll("g text")
+                                    .data(words, function(d) { return d.text; })
+            
+                    //Entering words
+                    cloud.enter()
+                        .append("text")
+                        .style("font-family", "Impact")
+                        .style("fill", function(d, i) { return fill(i); })
+                        .attr("text-anchor", "middle")
+                        .attr('font-size', 1)
+                        .text(function(d) { return d.text; });
+            
+                    //Entering and existing words
+                    cloud
+                        .transition()
+                            .duration(600)
+                            .style("font-size", function(d) { return d.size + "px"; })
+                            .attr("transform", function(d) {
+                                return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+                            })
+                            .style("fill-opacity", 1);
+            
+                    //Exiting words
+                    cloud.exit()
+                        .transition()
+                            .duration(200)
+                            .style('fill-opacity', 1e-6)
+                            .attr('font-size', 1)
+                            .remove();
+                }
+            
+                return {
+                    update: function(words) {
+                        d3.layout.cloud().size([width, height])
+                            .words(words)
+                            .padding(5)
+                            .rotate(function() { return ~~(Math.random() * 2) * 90; })
+                            .font("Impact")
+                            .fontSize(function(d) { return d.size; })
+                            .on("end", draw)
+                            .start();
+                    }
+                }
+            
+            }
+            
+            var words = [
+                "pretty nerdy goth blonde brunette short tall slim curvy busty shy outgoing otaku anime cartoon goth cosplay sweet gamer funny streamer kuirky innocent",
+                "pretty nerdy goth blonde brunette short tall slim curvy busty shy outgoing otaku anime cartoon goth cosplay sweet gamer funny streamer kuirky innocent",
+                "pretty nerdy goth blonde brunette short tall slim curvy busty shy outgoing otaku anime cartoon goth cosplay sweet gamer funny streamer kuirky innocent",
+                "pretty nerdy goth blonde brunette short tall slim curvy busty shy outgoing otaku anime cartoon goth cosplay sweet gamer funny streamer kuirky innocent",
+            ]
+
+            function getWords(i) {
+                return words[i]
+                        .replace(/[!\.,:;\?]/g, '')
+                        .split(' ')
+                        .map(function(d) {
+                            return {text: d, size: 10 + Math.random() * 60};
+                        })
+            }
+            
+            function showNewWords(vis, i) {
+                i = i || 0;
+            
+                vis.update(getWords(i ++ % words.length))
+                setTimeout(function() { showNewWords(vis, i + 1)}, 2000)
+            }
+            
+            //Create a new instance of the word cloud visualisation.
+            const selectorId = 'word-cloud-container';
+            const parentDiv = document.getElementById(selectorId);
+            const parentWidth = parentDiv.clientWidth;
+            const parentHeight = parentDiv.clientHeight;
+            var margin = {top: 10, right: 10, bottom: 10, left: 10},
+                width = parentWidth - margin.left - margin.right,
+                height = parentHeight - margin.top - margin.bottom;
+            var myWordCloud = wordCloud(selectorId, width, height);
+            
+            //Start cycling through the demo data
+            showNewWords(myWordCloud);
+        </script>
     </body>
 </html>
