@@ -21,15 +21,3 @@ p {
 section {
   @apply flex px-5 md:px-24 overflow-hidden;
 }
-
-form {
-    @apply max-w-[400px] md:max-w-max md:w-fit flex flex-col md:flex-row rounded-lg text-lg lg:text-2xl;
-}
-
-input {
-    @apply placeholder-white md:placeholder-gray-500 p-4 rounded-t-lg md:rounded-t-none md:rounded-l-lg border-[3px] border-primary bg-[#FFF0] bg-opacity-0 backdrop-blur-lg;
-}
-
-button {
-    @apply p-4 rounded-b-lg md:rounded-b-none md:rounded-r-lg border-[3px] border-t-0 md:border-t-[3px] md:border-l-0 border-primary bg-primary text-white hover:text-primary hover:bg-white;
-}
